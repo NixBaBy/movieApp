@@ -15,7 +15,7 @@ export default async function NowPlaying() {
   );
   const data = await response.json();
   const imgUrl =
-    "https://image.tmdb.org/t/p/original" + data.results[1]?.poster_path;
+    "https://image.tmdb.org/t/p/original" + data.results[1]?.backdrop_path;
   return (
     <div
       className="w-[100vw] h-[600px] m-[auto] mt-[24px]"

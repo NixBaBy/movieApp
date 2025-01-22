@@ -1,4 +1,12 @@
+import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/ui/them-toggle";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -10,23 +18,24 @@ export const Header = () => {
         </p>
       </div>
       <div className="flex gap-3">
-        <select
-          name="Genre"
-          id=""
-          className="w-[97px]  px-[16px] py-[8px] rounded-md border-[1px] border-solid border-[#27272A] bg-[#09090B] shadow-[0px 1px 2px 0px rgba(0, 0, 0, 0.05)] flex justify-center items-center "
-        >
-          <option value="" className="text-[#FAFAFA] text-[14px] ">
-            Genre
-          </option>
-        </select>
-        <input
+        <Popover>
+          <PopoverTrigger className="w-[94px] h-[36px]  border-solid border border-[#E4E4E7] rounded-[8px] flex justify-center items-center gap-[8px]">
+            <ChevronDown className="w-[16px] h-[16px]" />
+            <p> Genre</p>
+          </PopoverTrigger>
+          <PopoverContent className="w-[577px]">
+            <p>Genres</p>
+            <p>See lists of movies by genre</p>
+          </PopoverContent>
+        </Popover>
+        <Input
           type="text"
           placeholder="Search..."
-          className="w-[379px] py-3 rounded-lg border-[1px] border-solid border-[#27272A] bg-[#09090B]"
+          className="w-[379px] py-3 rounded-lg border-[1px] border-solid  "
         />
       </div>
       <div>
-        <img src="./Modes.png" alt="" />
+        <ModeToggle />
       </div>
     </div>
   );
