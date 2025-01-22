@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { ModeToggle } from "@/components/ui/them-toggle";
+import ThemeToggle from "@/components/ui/them-toggle";
 import {
   Popover,
   PopoverContent,
@@ -35,7 +35,7 @@ export const Header = () => {
         />
       </div>
       <div>
-        <ModeToggle />
+        <ThemeToggle />
       </div>
     </div>
   );

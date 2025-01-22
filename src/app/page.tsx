@@ -2,8 +2,8 @@ import Popular from "@/app/_components/Popular";
 import Upcoming from "./_components/Upcoming";
 import TopRated from "./_components/TopRated";
 import { Header } from "./_components/Header";
-import NowPlaying from "./_components/NowPlaying";
 import { Footer } from "./_components/Footer";
+import NowPlaying from "./_components/NowPlaying";
 
 export default function Home() {
   return (
