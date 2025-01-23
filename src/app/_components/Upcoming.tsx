@@ -1,6 +1,7 @@
 import { TOKEN } from "@/utils/constant";
 import { Responce } from "@/utils/response";
 import { MovieType } from "@/utils/types";
+import Link from "next/link";
 
 export default async function Upcoming() {
   // fetch movie medeelel setMovie
@@ -22,25 +23,28 @@ export default async function Upcoming() {
       <div className="flex flex-wrap mt-[32px] gap-[32px]">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
-            <div key={index}>
-              <div className="">
-                <img
-                  src={
-                    "https://image.tmdb.org/t/p/original/" + movie?.poster_path
-                  }
-                  alt=""
-                  className="w-[229px] h-[340px]"
-                />
-                <div className="p-[8px] w-[229px] h-[79px] bg-[#27272a] rounded-sm">
-                  <div className="flex gap-2 items-center">
-                    <img src="./Vector.png" alt="" className="h-[16px]" />
-                    <p>{movie?.vote_average}</p>
-                    <p>10</p>
+            <Link href={`dynamic-detail/${movie?.id}`} key={index}>
+              <div key={index}>
+                <div className="">
+                  <img
+                    src={
+                      "https://image.tmdb.org/t/p/original/" +
+                      movie?.poster_path
+                    }
+                    alt=""
+                    className="w-[229px] h-[340px]"
+                  />
+                  <div className="p-[8px] w-[229px] h-[79px]  bg-secondary  rounded-sm">
+                    <div className="flex gap-2 items-center">
+                      <img src="./Vector.png" alt="" className="h-[16px]" />
+                      <p>{movie?.vote_average}</p>
+                      <p>10</p>
+                    </div>
+                    <p>{movie?.original_title}</p>
                   </div>
-                  <p>{movie?.original_title}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

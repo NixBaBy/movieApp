@@ -2,11 +2,19 @@ import { TOKEN } from "@/utils/constant";
 import { MovieType } from "@/utils/types";
 import { Responce } from "@/utils/response";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
 export default async function Popular() {
   // fetch movie medeelel setMovie
   const popular = "/movie/popular?language=en-US&page=1";
   const data = await Responce(popular);
-
   return (
     <div className="w-[58vw] m-[auto]">
       <div className="flex justify-between mt-[52px]">
@@ -21,25 +29,27 @@ export default async function Popular() {
       <div className="flex flex-wrap mt-[32px] gap-[32px]">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
-            <div key={index}>
-              <div className="">
-                <Image
-                  src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                  width={229}
-                  height={340}
-                  alt=""
-                />
+            <Link href={`dynamic-detail/${movie?.id}`} key={index}>
+              <div>
+                <div className="">
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                    width={229}
+                    height={340}
+                    alt=""
+                  />
 
-                <div className="p-[8px] w-[229px] h-[79px] bg-[#27272a] rounded-sm">
-                  <div className="flex gap-2 items-center">
-                    <img src="./Vector.png" alt="" className="h-[16px]" />
-                    <p>{movie?.vote_average}</p>
-                    <p>10</p>
+                  <div className="p-[8px] w-[229px] h-[79px] bg-secondary rounded-sm">
+                    <div className="flex gap-2 items-center">
+                      <img src="./Vector.png" alt="" className="h-[16px]" />
+                      <p>{movie?.vote_average}</p>
+                      <p>10</p>
+                    </div>
+                    <p>{movie?.original_title}</p>
                   </div>
-                  <p>{movie?.original_title}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
