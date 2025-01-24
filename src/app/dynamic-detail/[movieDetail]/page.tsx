@@ -10,11 +10,10 @@ import CrewCaw from "@/app/_components/MovieDetail/CrewCaw";
 import MoreLikeThis from "@/app/_components/MovieDetail/MoreLikeThis";
 import Name from "@/app/_components/MovieDetail/Name";
 
-export default async function page({
-  params: { movieDetail },
-}: {
-  params: { movieDetail: string };
+export default async function page(props: {
+  params: Promise<{ movieDetail: string }>;
 }) {
+  const { movieDetail } = await props.params;
   const detail = `/movie/${movieDetail}?language=en-US`;
   const data = await Responce(detail);
 
