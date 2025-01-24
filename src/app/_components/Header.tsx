@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import React from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { GenreType, MovieType } from "@/utils/types";
+import { GenreType } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

@@ -7,7 +7,6 @@ export const Footer = () => {
       <div className="flex flex-col gap-3">
         <div className="flex gap-2 ">
           <img src="./Logo.svg" alt="" className="" />
-          {/* <p className=" text-[16px] font-bold tracking-[0.32px]">Movie Z</p> */}
         </div>
         <p>© 2024 Movie Z. All Rights Reserved.</p>
       </div>

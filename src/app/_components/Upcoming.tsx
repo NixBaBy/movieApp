@@ -1,11 +1,8 @@
-import { TOKEN } from "@/utils/constant";
 import { Responce } from "@/utils/response";
 import { MovieType } from "@/utils/types";
 import Link from "next/link";
 
 export default async function Upcoming() {
-  // fetch movie medeelel setMovie
-
   const upcoming = "/movie/upcoming?language=en-US&page=1";
   const data = await Responce(upcoming);
 

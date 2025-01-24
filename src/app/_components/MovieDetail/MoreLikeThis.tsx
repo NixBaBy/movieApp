@@ -25,7 +25,7 @@ export default async function MoreLikeThis({
         <div className="flex flex-wrap mt-[32px] gap-[26px] mb-[122px]">
           {data2.results.slice(1, 6).map((data: MovieType, index: number) => {
             return (
-              <div>
+              <div key={index}>
                 <div className="">
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}

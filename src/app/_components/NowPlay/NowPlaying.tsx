@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Responce } from "@/utils/response";
-import { Card, CardContent } from "@/components/ui/card";
 import { MovieType } from "@/utils/types";
 
 import {

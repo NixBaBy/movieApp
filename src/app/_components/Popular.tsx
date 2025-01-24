@@ -1,15 +1,6 @@
-import { TOKEN } from "@/utils/constant";
 import { MovieType } from "@/utils/types";
 import { Responce } from "@/utils/response";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Link from "next/link";
 export default async function Popular() {
   // fetch movie medeelel setMovie
