@@ -32,7 +32,7 @@ export default async function TopRated() {
                       movie?.poster_path
                     }
                     alt=""
-                    className="w-[229px] h-[340px]"
+                    className="w-[229px] h-[340px] hover:"
                   />
                   <div className="p-[8px] w-[229px] h-[79px]  bg-secondary  rounded-sm">
                     <div className="flex gap-2 items-center">

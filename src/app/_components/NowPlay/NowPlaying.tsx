@@ -2,7 +2,6 @@ import * as React from "react";
 import { Responce } from "@/utils/response";
 import { Card, CardContent } from "@/components/ui/card";
 import { MovieType } from "@/utils/types";
-import { Button } from "@/components/ui/button";
 
 import {
   Carousel,
@@ -11,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Play } from "lucide-react";
+import NowTrailer from "./NowTrailer";
 
 export default async function NowPlaying() {
   const nowplaying = "/movie/now_playing?language=en-US&page=1";
@@ -46,15 +45,14 @@ export default async function NowPlaying() {
                       </div>
                     </div>
                     <div className="w-[302]">
-                      <p className="text-white"> {movie?.overview}</p>
+                      <p className="text-white">
+                        {movie?.overview.substr(0, 250)}
+                      </p>
                     </div>
-                    <Button
-                      variant="outline"
-                      className="py-[8px] px-[16px] w-[145px]"
-                    >
-                      <Play />
-                      Watch Trailer
-                    </Button>
+
+                    <div>
+                      <NowTrailer id={movie.id} />
+                    </div>
                   </div>
                 </div>
               </div>
