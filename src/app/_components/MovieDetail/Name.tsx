@@ -4,7 +4,6 @@ import { Responce } from "@/utils/response";
 export default async function Name({ movieDetail }: { movieDetail: string }) {
   const detail = `/movie/${movieDetail}?language=en-US`;
   const data = await Responce(detail);
-  console.log(data);
   return (
     <div>
       <div className="flex justify-between">

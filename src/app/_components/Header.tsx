@@ -15,7 +15,7 @@ import Link from "next/link";
 export default async function Header() {
   const genre = "/genre/movie/list?language=en";
   const data = await Responce(genre);
-
+  console.log(data);
   return (
     <div className="sticky top-0 z-20 bg-background">
       <div className="flex justify-between w-[58vw] h-[59px] m-[auto] mt-[11.5px] items-center flex-wrap">

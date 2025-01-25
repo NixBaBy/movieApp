@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Responce } from "@/utils/response";
 import { MovieType } from "@/utils/types";
 import Image from "next/image";
+import Link from "next/link";
 export default async function MoreLikeThis({
   movieDetail,
 }: {
@@ -23,28 +24,30 @@ export default async function MoreLikeThis({
           </div>
         </div>
         <div className="flex flex-wrap mt-[32px] gap-[26px] mb-[122px]">
-          {data2.results.slice(1, 6).map((data: MovieType, index: number) => {
+          {data2.results.slice(1, 6).map((data: MovieType, id: string) => {
             return (
-              <div key={index}>
-                <div className="">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
-                    width={190}
-                    height={291}
-                    alt=""
-                    className="w-[190px] h-[291px]"
-                  />
+              <Link href={`/dynamic-detail/${data?.id}`} key={id}>
+                <div>
+                  <div className="">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
+                      width={190}
+                      height={291}
+                      alt=""
+                      className="w-[190px] h-[291px]"
+                    />
 
-                  <div className="p-[8px] w-[190px] h-[79px] bg-secondary rounded-sm">
-                    <div className="flex gap-2 items-center">
-                      <img src="./Vector.png" alt="" className="h-[16px]" />
-                      <p>{data?.vote_average}</p>
-                      <p>10</p>
+                    <div className="p-[8px] w-[190px] h-[79px] bg-secondary rounded-sm">
+                      <div className="flex gap-2 items-center">
+                        <img src="./Vector.png" alt="" className="h-[16px]" />
+                        <p>{data?.vote_average}</p>
+                        <p>10</p>
+                      </div>
+                      <p>{data?.original_title.substr(0, 15)}</p>
                     </div>
-                    <p>{data?.original_title.substr(0, 15)}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

@@ -51,7 +51,7 @@ export default async function Trailer({
             <iframe
               width="997"
               height="561"
-              src={`https://www.youtube.com/embed/${data3.results[0].key}`}
+              src={`https://www.youtube.com/embed/${data3.results[0]?.key}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
