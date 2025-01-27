@@ -1,19 +1,25 @@
-import Popular from "@/app/_components/Popular";
-import Upcoming from "./_components/Upcoming";
-import TopRated from "./_components/TopRated";
-import Header from "./_components/Header";
-import { Footer } from "./_components/Footer";
 import NowPlaying from "./_components/NowPlay/NowPlaying";
+import Category from "./_components/Category";
 
 export default function Home() {
   return (
     <div>
-      <Header />
       <NowPlaying />
-      <Upcoming />
-      <Popular />
-      <TopRated />
-      <Footer />
+      <Category
+        name="Upcoming"
+        link="/movie/upcoming?language=en-US&page=1"
+        toprated="upcoming"
+      />
+      <Category
+        name="Popular"
+        link="/movie/popular?language=en-US&page=1"
+        toprated="popular"
+      />
+      <Category
+        name="Top Rated"
+        link="/movie/top_rated?language=en-US&page=1"
+        toprated="top_rated"
+      />
     </div>
   );
 }

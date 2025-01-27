@@ -1,14 +1,12 @@
 import React from "react";
 import { Responce } from "@/utils/response";
-import Header from "@/app/_components/Header";
 import { GenreType } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import { Footer } from "@/app/_components/Footer";
-import Trailer from "@/app/_components/MovieDetail/Trailer";
-import CrewCaw from "@/app/_components/MovieDetail/CrewCaw";
-import MoreLikeThis from "@/app/_components/MovieDetail/MoreLikeThis";
-import Name from "@/app/_components/MovieDetail/Name";
+import Trailer from "@/app/dynamic-detail/MovieDetail/Trailer";
+import CrewCaw from "@/app/dynamic-detail/MovieDetail/CrewCaw";
+import MoreLikeThis from "@/app/dynamic-detail/MovieDetail/MoreLikeThis";
+import Name from "@/app/dynamic-detail/MovieDetail/Name";
 
 export default async function page(props: {
   params: Promise<{ movieDetail: string }>;
@@ -19,7 +17,6 @@ export default async function page(props: {
 
   return (
     <div>
-      <Header />
       <div className="w-[48vw] m-[auto] mt-[52px]">
         <Name movieDetail={movieDetail} />
         <Trailer movieDetail={movieDetail} />
@@ -45,8 +42,6 @@ export default async function page(props: {
         </div>
         <MoreLikeThis movieDetail={movieDetail} />
       </div>
-
-      <Footer />
     </div>
   );
 }
