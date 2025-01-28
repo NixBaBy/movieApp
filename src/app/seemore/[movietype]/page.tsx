@@ -1,30 +1,36 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Responce } from "@/utils/response";
 import { MovieType } from "@/utils/types";
 import Link from "next/link";
 import { Paginat } from "../Paginat";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { useSearchParams } from "next/navigation";
 
-export default async function page(props: {
+export default function page(props: {
   params: Promise<{ movietype: string }>;
 }) {
-  const { movietype } = await props.params;
-  const detail = `/movie/${movietype}?language=en-US&page=1`;
-  const data = await Responce(detail);
+  const searchParams = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
+
+  const [movie, setMovie] = useState<any>(null);
+  const [movieType, setMovieType] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { movietype } = await props.params;
+      setMovieType(movietype);
+      const detail = `/movie/${movietype}?language=en-US&page=${page}`;
+      const data = await Responce(detail);
+      setMovie(data);
+    };
+    fetchData();
+  }, [page]);
 
   return (
     <div className="w-[58vw] m-[auto] mt-[52px]">
-      <p className="text-[30px] font-bold tracking-[-0.75px]">{movietype}</p>
+      <p className="text-[30px] font-bold tracking-[-0.75px]">{movieType}</p>
       <div className="flex flex-wrap mt-[32px] gap-[32px] ">
-        {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
+        {movie?.results.map((movie: MovieType, index: number) => {
           return (
             <Link href={`dynamic-detail/${movie?.id}`} key={index}>
               <div key={index}>
@@ -51,34 +57,7 @@ export default async function page(props: {
         })}
       </div>
       <div className="mt-[32px]">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink
-                href={`/movie/${movietype}?language=en-US&page=1`}
-              >
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        <Paginat currentPage={Number(page)} totalPages={movie?.total_pages} />
       </div>
     </div>
   );

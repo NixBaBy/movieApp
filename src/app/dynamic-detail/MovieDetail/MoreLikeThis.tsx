@@ -27,11 +27,7 @@ export default async function MoreLikeThis({
         <div className="flex flex-wrap mt-[32px] gap-[26px] mb-[122px]">
           {data2.results.slice(1, 6).map((data: MovieType, id: string) => {
             return (
-<<<<<<< HEAD:src/app/_components/MovieDetail/MoreLikeThis.tsx
               <Link href={`/dynamic-detail/${data?.id}`} key={id}>
-=======
-              <Link href={`/dynamic-detail/${data?.id}`} key={index}>
->>>>>>> 0eafa34 (asd):src/app/dynamic-detail/MovieDetail/MoreLikeThis.tsx
                 <div>
                   <div className="">
                     <Image

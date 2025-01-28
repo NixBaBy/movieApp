@@ -40,9 +40,8 @@ export default async function Header() {
               <div className="flex flex-wrap gap-4">
                 {data.genres.map((data: GenreType, index: number) => {
                   return (
-                    <Link href={`/genre-detail/${data.id}`}>
+                    <Link href={`/genre-detail/${data.id}`} key={index}>
                       <Button
-                        key={index}
                         variant="outline"
                         className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px] flex"
                       >

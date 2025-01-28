@@ -2,6 +2,8 @@ import { MovieType } from "@/utils/types";
 import { Responce } from "@/utils/response";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
+
 export default async function Category({
   name,
   link,
@@ -17,13 +19,11 @@ export default async function Category({
   return (
     <div className="w-[58vw] m-[auto]">
       <div className="flex justify-between mt-[52px]">
-        <p className="text-[24px] tracking-[-0.6px] font-bold text-[#FAFAFA]">
-          {name}
-        </p>
+        <p className="text-[24px] tracking-[-0.6px] font-bold">{name}</p>
         <Link href={`/seemore/${toprated}`}>
           <div className="flex w-[88px] items-center  gap-2">
-            <p className="text-[#FAFAFA] text-[14px] ">See More</p>
-            <img src="./Arrow.svg" alt="" className="w-[16px] h-[16px]" />
+            <p className="text-[14px] ">See More</p>
+            <FaArrowRight />
           </div>
         </Link>
       </div>
