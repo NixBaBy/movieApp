@@ -5,6 +5,7 @@ import { MovieType } from "@/utils/types";
 import Link from "next/link";
 import { Paginat } from "../Paginat";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 export default function page(props: {
   params: Promise<{ movietype: string }>;
@@ -33,9 +34,11 @@ export default function page(props: {
         {movie?.results.map((movie: MovieType, index: number) => {
           return (
             <Link href={`dynamic-detail/${movie?.id}`} key={index}>
-              <div key={index}>
+              <div>
                 <div className="">
-                  <img
+                  <Image
+                    width={1000}
+                    height={1000}
                     src={
                       "https://image.tmdb.org/t/p/w500/" + movie?.poster_path
                     }
