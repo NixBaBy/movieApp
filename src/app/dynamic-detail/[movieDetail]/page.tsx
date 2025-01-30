@@ -3,10 +3,10 @@ import { Responce } from "@/utils/response";
 import { GenreType } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import Trailer from "@/app/dynamic-detail/MovieDetail/Trailer";
-import CrewCaw from "@/app/dynamic-detail/MovieDetail/CrewCaw";
-import MoreLikeThis from "@/app/dynamic-detail/MovieDetail/MoreLikeThis";
-import Name from "@/app/dynamic-detail/MovieDetail/Name";
+import Trailer from "../MovieDetail/Trailer";
+import Name from "../MovieDetail/Name";
+import CrewCaw from "../MovieDetail/CrewCaw";
+import MoreLikeThis from "../MovieDetail/MoreLikeThis";
 
 export default async function page(props: {
   params: Promise<{ movieDetail: string }>;

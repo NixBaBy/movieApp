@@ -1,4 +1,3 @@
-import { Input } from "@/components/ui/input";
 import ThemeToggle from "@/components/ui/them-toggle";
 import { Responce } from "@/utils/response";
 import {
@@ -11,11 +10,12 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { GenreType } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { HeaderInput } from "./HeaderInput";
 
 export default async function Header() {
   const genre = "/genre/movie/list?language=en";
   const data = await Responce(genre);
-  console.log(data);
+
   return (
     <div className="sticky top-0 z-20 bg-background">
       <div className="flex justify-between w-[58vw] h-[59px] m-[auto] mt-[11.5px] items-center flex-wrap">
@@ -54,11 +54,7 @@ export default async function Header() {
               </div>
             </PopoverContent>
           </Popover>
-          <Input
-            type="text"
-            placeholder="Search..."
-            className="w-[379px] py-3 rounded-lg border-[1px] border-solid  "
-          />
+          <HeaderInput />
         </div>
         <div>
           <ThemeToggle />

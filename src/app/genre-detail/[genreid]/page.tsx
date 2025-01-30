@@ -38,9 +38,6 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
   }, [page]);
 
   const genreChangeHandler = (selectedgenre: string[]) => {
-    setGenreSelected(selectedgenre);
-    console.log(movieType);
-    // const selectedGenres = genred?.genres?.filter((genreNumber:string)=>)
     const selectedGenres = genred?.genres.filter(
       (genre: { id: string; name: string }) => {
         return selectedgenre.includes(genre.id.toString());
@@ -94,11 +91,11 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
         <div>
           <div className="text-[20px] font-bold tracking-[-0.5px] flex gap-1 ">
             {movie?.total_results} titles in{" "}
-            <div>
+            <div className="flex gap-2">
               {" "}
-              {genreName?.map(
-                (genre: { id: string; name: string }) => genre.name
-              )}
+              {genreName?.map((genre: { id: string; name: string }) => (
+                <div key={genre.id}>{genre.name},</div>
+              ))}
             </div>
           </div>
           <div className="flex flex-wrap mt-[32px] gap-[32px] w-[35vw]">
