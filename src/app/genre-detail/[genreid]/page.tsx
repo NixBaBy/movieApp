@@ -10,10 +10,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-export default function page(props: { params: Promise<{ genreid: string }> }) {
+export default function Page(props: { params: Promise<{ genreid: string }> }) {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page") || "1");
-
   const [movie, setMovie] = useState<GenreFilterType | null>(null);
   const [movieType, setMovieType] = useState("");
   const [genred, setGenred] = useState<Genres | null>(null);
@@ -40,7 +39,6 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
       return selectedgenre.includes(genre.id.toString());
     });
     setGenreSelected(selectedgenre);
-    console.log(selectedGenres);
     setGenreName(selectedGenres);
   };
 

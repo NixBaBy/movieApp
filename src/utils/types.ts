@@ -31,3 +31,9 @@ export type GenreFilterType = {
 export type Genres = {
   genres: GenreType[];
 };
+export type InputTypes = {
+  page: number;
+  results: MovieType[];
+  total_pages: number;
+  total_results: number;
+};

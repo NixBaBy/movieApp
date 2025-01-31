@@ -1,9 +1,9 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Responce } from "@/utils/response";
-import { MovieType } from "@/utils/types";
+import { InputTypes, MovieType } from "@/utils/types";
 import Image from "next/image";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -13,60 +13,42 @@ import Link from "next/link";
 
 export const HeaderInput = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [data, setData] = useState<any>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const [data, setData] = useState<InputTypes | null>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (searchValue.trim()) {
-        const genre = `/search/movie?query=${searchValue}&language=en-US`;
-        const data = await Responce(genre);
-        setData(data);
-      } else {
-        setData(null);
-      }
+      const genre = `/search/movie?query=${searchValue}&language=en-US`;
+      const data = await Responce(genre);
+      setData(data);
     };
     fetchData();
   }, [searchValue]);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      popoverRef.current &&
-      !popoverRef.current.contains(event.target as Node)
-    ) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    if (!isOpen) setIsOpen(true);
-  };
+  // const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchValue(e.target.value);
+  // };
 
   return (
-    <div ref={popoverRef}>
-      <Popover open={isOpen}>
+    <div>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Input
-            type="search"
+            type="text"
+            placeholder="Search movies..."
             value={searchValue}
-            onChange={searchHandler}
-            placeholder="Search..."
-            className="w-[379px] py-3 rounded-lg border-[1px] border-solid"
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+              setOpen(e.target.value.length > 0);
+            }}
+            onFocus={() => setOpen(true)}
+            className="w-[379px] px-[12px] "
           />
         </PopoverTrigger>
-        {isOpen && (
+        {open && searchValue.length > 0 && (
           <PopoverContent
-            onMouseDown={(e) => e.stopPropagation()}
             className="w-[577px]"
+            onOpenAutoFocus={(e) => e.preventDefault()}
           >
             <div className="p-[8px] flex flex-col gap-[16px]">
               {data?.results?.slice(0, 5).map((movie: MovieType) => (
@@ -85,7 +67,7 @@ export const HeaderInput = () => {
                     <div className="p-[8px] h-[100px] rounded-sm flex flex-col gap-[12px]">
                       <p>{movie?.original_title}</p>
                       <div className="flex gap-2 items-center">
-                        <img src="./Vector.svg" alt="" className="h-[16px]" />
+                        <Image src="/star.svg" alt="" width={16} height={16} />
                         <p>{movie?.vote_average}</p>
                         <p>10</p>
                       </div>

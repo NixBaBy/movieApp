@@ -1,7 +1,7 @@
 "use client";
 
 import { Responce } from "@/utils/response";
-import { GenreType, MovieType } from "@/utils/types";
+import { Genres, GenreType, InputTypes, MovieType } from "@/utils/types";
 import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -15,8 +15,8 @@ const page = () => {
   const searchParams = useSearchParams();
   const value = searchParams.get("searchvalue");
   const page = Number(searchParams.get("page") || "1");
-  const [data, setData] = useState<any>(null);
-  const [genre, setGenre] = useState<any>(null);
+  const [data, setData] = useState<InputTypes | null>(null);
+  const [genre, setGenre] = useState<Genres | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +26,7 @@ const page = () => {
       const genre = "/genre/movie/list?language=en";
       const data1 = await Responce(genre);
       setGenre(data1);
+      console.log(data1);
     };
     fetchData();
   }, [page]);
