@@ -85,7 +85,7 @@ export const HeaderInput = () => {
                     <div className="p-[8px] h-[100px] rounded-sm flex flex-col gap-[12px]">
                       <p>{movie?.original_title}</p>
                       <div className="flex gap-2 items-center">
-                        <img src="./Vector.png" alt="" className="h-[16px]" />
+                        <img src="./Vector.svg" alt="" className="h-[16px]" />
                         <p>{movie?.vote_average}</p>
                         <p>10</p>
                       </div>

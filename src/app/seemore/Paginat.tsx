@@ -47,7 +47,9 @@ export const Paginat = ({
             </PaginationItem>
           )}
           <PaginationItem>
-            <PaginationLink href="#" isActive>{currentPage}</PaginationLink>
+            <PaginationLink href="#" isActive>
+              {currentPage}
+            </PaginationLink>
           </PaginationItem>
           {currentPage < totalPages && (
             <PaginationItem>

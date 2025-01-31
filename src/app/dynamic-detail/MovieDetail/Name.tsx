@@ -20,7 +20,7 @@ export default async function Name({ movieDetail }: { movieDetail: string }) {
         <div className="flex">
           <p>Rating</p>
           <div className="flex flex-col gap-[4px]">
-            <img src="./star.svg" alt="" className="h-[16px]" />
+            <img src="/star.svg" alt="" className="h-[16px]" />
             <div>
               <p>{data?.vote_average.toFixed(1)}</p>
               <p>/10</p>

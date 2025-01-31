@@ -21,3 +21,13 @@ export type CrewTypes = {
 export type CastTypes = {
   known_for_department: string;
 };
+export type GenreFilterType = {
+  page: number;
+  results: MovieType[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type Genres = {
+  genres: GenreType[];
+};

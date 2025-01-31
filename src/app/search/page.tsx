@@ -9,16 +9,18 @@ import Link from "next/link";
 
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Paginat } from "../seemore/Paginat";
 
 const page = () => {
   const searchParams = useSearchParams();
   const value = searchParams.get("searchvalue");
+  const page = Number(searchParams.get("page") || "1");
   const [data, setData] = useState<any>(null);
   const [genre, setGenre] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const movie = `/search/movie?query=${value}&language=en-US`;
+      const movie = `/search/movie?query=${value}&language=en-US&page=${page}`;
       const data = await Responce(movie);
       setData(data);
       const genre = "/genre/movie/list?language=en";
@@ -26,12 +28,14 @@ const page = () => {
       setGenre(data1);
     };
     fetchData();
-  }, []);
+  }, [page]);
 
   return (
     <div className="w-[58vw] m-auto ">
       <p>Search results</p>
-      <p>. results for "{value}"</p>
+      <p>
+        {data?.total_results} results for "{value}"
+      </p>
       <div className="flex">
         <div className="flex flex-wrap mt-[32px] gap-[32px] w-[68%]">
           {data?.results.map((movie: MovieType, index: number) => {
@@ -50,7 +54,7 @@ const page = () => {
                     <div className="p-[8px] w-[165px] h-[79px]  bg-secondary ">
                       <div className="flex  items-center">
                         <div className="flex gap-2 items-center">
-                          <img src="./Vector.png" alt="" className="h-[16px]" />
+                          <img src="./Vector.svg" alt="" className="h-[16px]" />
                           <p>{movie?.vote_average}</p>
                         </div>
                         <p>/10</p>
@@ -80,6 +84,12 @@ const page = () => {
             })}
           </ToggleGroup>
         </div>
+      </div>
+      <div>
+        <Paginat
+          currentPage={Number(page)}
+          totalPages={data?.results?.total_pages}
+        />
       </div>
     </div>
   );

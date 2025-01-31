@@ -47,7 +47,7 @@ export default function page(props: {
                   />
                   <div className="p-[8px] w-[229px] h-[79px]  bg-secondary  rounded-sm">
                     <div className="flex gap-2 items-center">
-                      <img src="./Vector.png" alt="" className="h-[16px]" />
+                      <img src="./Vector.svg" alt="" className="h-[16px]" />
                       <p>{movie?.vote_average}</p>
                       <p>10</p>
                     </div>

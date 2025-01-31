@@ -39,7 +39,7 @@ export default async function NowPlaying() {
                         </p>
                       </div>
                       <div className="flex gap-2 items-center text-white text-[16px]">
-                        <img src="./Vector.png" alt="" className="h-[16px]" />
+                        <img src="./Vector.svg" alt="" className="h-[16px]" />
                         <div className="flex">
                           <p>{movie?.vote_average}</p>
                           <p>/10</p>

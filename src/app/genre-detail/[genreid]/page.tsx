@@ -2,7 +2,7 @@
 import { Paginat } from "@/app/seemore/Paginat";
 
 import { Responce } from "@/utils/response";
-import { GenreType, MovieType } from "@/utils/types";
+import { GenreFilterType, Genres, GenreType, MovieType } from "@/utils/types";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,13 +14,11 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page") || "1");
 
-  const [movie, setMovie] = useState<any>(null);
+  const [movie, setMovie] = useState<GenreFilterType | null>(null);
   const [movieType, setMovieType] = useState("");
-  const [genred, setGenred] = useState<any>(null);
+  const [genred, setGenred] = useState<Genres | null>(null);
   const [genreSelected, setGenreSelected] = useState<string[]>([]);
-  const [genreName, setGenreName] = useState<
-    { id: string; name: string }[] | null
-  >(null);
+  const [genreName, setGenreName] = useState<GenreType[] | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,11 +36,11 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
   }, [page]);
 
   const genreChangeHandler = (selectedgenre: string[]) => {
-    const selectedGenres = genred?.genres.filter(
-      (genre: { id: string; name: string }) => {
-        return selectedgenre.includes(genre.id.toString());
-      }
-    );
+    const selectedGenres = genred?.genres.filter((genre: GenreType) => {
+      return selectedgenre.includes(genre.id.toString());
+    });
+    setGenreSelected(selectedgenre);
+    console.log(selectedGenres);
     setGenreName(selectedGenres);
   };
 
@@ -58,6 +56,9 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
     getMoviesData();
   }, [genreSelected]);
 
+  if (!movie) {
+    return null;
+  }
   return (
     <div className="w-[58%] m-auto mt-[52px]">
       <p className="mb-[32px]  text-[30px] font-bold tracking-[-0.75px]">
@@ -93,7 +94,7 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
             {movie?.total_results} titles in{" "}
             <div className="flex gap-2">
               {" "}
-              {genreName?.map((genre: { id: string; name: string }) => (
+              {genreName?.map((genre: GenreType) => (
                 <div key={genre.id}>{genre.name},</div>
               ))}
             </div>
@@ -112,8 +113,8 @@ export default function page(props: { params: Promise<{ genreid: string }> }) {
 
                     <div className="p-[8px] w-[165px] h-[79px] bg-secondary rounded-sm">
                       <div className="flex gap-2 items-center">
-                        <img src="./Vector.png" alt="" className="h-[16px]" />
-                        <p>{movie?.vote_average}</p>
+                        <img src="./Vector.svg" alt="" className="h-[16px]" />
+                        <div>{movie?.vote_average}</div>
                         <p>10</p>
                       </div>
                       <p>{movie?.original_title}</p>
