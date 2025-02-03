@@ -5,6 +5,7 @@ export type MovieType = {
   backdrop_path: string;
   overview: string;
   id: string;
+  genre_ids: number[];
 };
 
 export type GenreType = {
@@ -30,10 +31,4 @@ export type GenreFilterType = {
 
 export type Genres = {
   genres: GenreType[];
-};
-export type InputTypes = {
-  page: number;
-  results: MovieType[];
-  total_pages: number;
-  total_results: number;
 };

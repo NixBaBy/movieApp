@@ -1,19 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Responce } from "@/utils/response";
-import { MovieType } from "@/utils/types";
+import { GenreFilterType, MovieType } from "@/utils/types";
 import Link from "next/link";
 import { Paginat } from "../Paginat";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-export default function page(props: {
+export default function usePage(props: {
   params: Promise<{ movietype: string }>;
 }) {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page") || "1");
 
-  const [movie, setMovie] = useState<any>(null);
+  const [movie, setMovie] = useState<GenreFilterType | null>(null);
   const [movieType, setMovieType] = useState("");
 
   useEffect(() => {
@@ -60,7 +60,10 @@ export default function page(props: {
         })}
       </div>
       <div className="mt-[32px]">
-        <Paginat currentPage={Number(page)} totalPages={movie?.total_pages} />
+        <Paginat
+          currentPage={Number(page)}
+          totalPages={movie?.total_pages || 0}
+        />
       </div>
     </div>
   );

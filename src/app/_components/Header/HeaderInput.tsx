@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Responce } from "@/utils/response";
-import { InputTypes, MovieType } from "@/utils/types";
+import { GenreFilterType, MovieType } from "@/utils/types";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import {
@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export const HeaderInput = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [data, setData] = useState<InputTypes | null>(null);
+  const [data, setData] = useState<GenreFilterType | null>(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -24,10 +24,6 @@ export const HeaderInput = () => {
     };
     fetchData();
   }, [searchValue]);
-
-  // const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearchValue(e.target.value);
-  // };
 
   return (
     <div>
@@ -80,7 +76,7 @@ export const HeaderInput = () => {
                 <Link href={`/search?searchvalue=${searchValue}`}>
                   <div className="flex items-center gap-1 cursor-pointer">
                     <p className="text-[14px] font-bold">See all results for</p>
-                    <p>"{searchValue}"</p>
+                    <p>&ldquo;{searchValue}&ldquo;</p>
                   </div>
                 </Link>
               )}

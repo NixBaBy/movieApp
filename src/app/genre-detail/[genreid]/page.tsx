@@ -14,7 +14,7 @@ export default function Page(props: { params: Promise<{ genreid: string }> }) {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page") || "1");
   const [movie, setMovie] = useState<GenreFilterType | null>(null);
-  const [movieType, setMovieType] = useState("");
+
   const [genred, setGenred] = useState<Genres | null>(null);
   const [genreSelected, setGenreSelected] = useState<string[]>([]);
   const [genreName, setGenreName] = useState<GenreType[] | undefined>();
@@ -23,8 +23,8 @@ export default function Page(props: { params: Promise<{ genreid: string }> }) {
     const fetchData = async () => {
       const { genreid } = await props.params;
       setGenreSelected([genreid]);
-      setMovieType(genreid);
-      let detail = `/discover/movie?language=en&page=${page}&with_genres=${genreid}`;
+
+      const detail = `/discover/movie?language=en&page=${page}&with_genres=${genreid}`;
       const genre = "/genre/movie/list?language=en";
       const data = await Responce(detail);
       setMovie(data);
@@ -76,7 +76,15 @@ export default function Page(props: { params: Promise<{ genreid: string }> }) {
           >
             {genred?.genres.map((data: GenreType, index: number) => {
               return (
-                <ToggleGroupItem value={data.id.toString()} key={index}>
+                <ToggleGroupItem
+                  value={data.id.toString()}
+                  key={index}
+                  className={`${
+                    genreSelected.includes(data.id.toString())
+                      ? "bg-black text-white"
+                      : ""
+                  }`}
+                >
                   <p className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px] flex">
                     {data?.name}
                     <ChevronRight />

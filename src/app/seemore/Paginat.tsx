@@ -8,7 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const Paginat = ({
   currentPage,
@@ -18,9 +18,11 @@ export const Paginat = ({
   totalPages: number;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const value = searchParams.get("searchvalue");
 
   const goToPage = (pagenum: number) => {
-    router.push(`?page=${pagenum}`);
+    router.push(`?${value ? "searchvalue=" + value + "&" : ""}page=${pagenum}`);
   };
 
   return (

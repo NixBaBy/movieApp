@@ -11,7 +11,7 @@ export default async function MoreLikeThis({
 }) {
   const likethis = `/movie/${movieDetail}/similar?language=en-US&page=1`;
   const data2 = await Responce(likethis);
-  console.log(data2);
+
   return (
     <div>
       <div className="mt-[32px]">
