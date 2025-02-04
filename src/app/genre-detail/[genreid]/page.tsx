@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Badge } from "@/components/ui/badge";
 
 export default function Page(props: { params: Promise<{ genreid: string }> }) {
   const searchParams = useSearchParams();
@@ -76,19 +77,20 @@ export default function Page(props: { params: Promise<{ genreid: string }> }) {
           >
             {genred?.genres.map((data: GenreType, index: number) => {
               return (
-                <ToggleGroupItem
-                  value={data.id.toString()}
-                  key={index}
-                  className={`${
-                    genreSelected.includes(data.id.toString())
-                      ? "bg-black text-white"
-                      : ""
-                  }`}
-                >
-                  <p className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px] flex">
-                    {data?.name}
-                    <ChevronRight />
-                  </p>
+                <ToggleGroupItem value={data.id.toString()} key={index}>
+                  <Badge
+                    className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px]"
+                    variant={
+                      genreSelected.includes(data.id.toString())
+                        ? "default"
+                        : "outline"
+                    }
+                  >
+                    <p className="flex items-center">
+                      {data?.name}
+                      <ChevronRight className="w-[16px] h-[16px]" />
+                    </p>
+                  </Badge>
                 </ToggleGroupItem>
               );
             })}
@@ -119,7 +121,7 @@ export default function Page(props: { params: Promise<{ genreid: string }> }) {
 
                     <div className="p-[8px] w-[165px] h-[79px] bg-secondary rounded-sm">
                       <div className="flex gap-2 items-center">
-                        <img src="./Vector.svg" alt="" className="h-[16px]" />
+                        <img src="/star.svg" alt="" className="h-[16px]" />
                         <div>{movie?.vote_average}</div>
                         <p>10</p>
                       </div>

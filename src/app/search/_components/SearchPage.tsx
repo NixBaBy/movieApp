@@ -7,14 +7,13 @@ import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Badge } from "@/components/ui/badge";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const UsePages = () => {
   const searchParams = useSearchParams();
   const value = searchParams.get("searchvalue");
-  // const genreIds = searchParams.get("genreIds");
   const page = Number(searchParams.get("page") || "1");
   const [data, setData] = useState<GenreFilterType | null>(null);
   const [genre, setGenre] = useState<Genres | null>(null);
@@ -102,19 +101,20 @@ const UsePages = () => {
           >
             {genre?.genres.map((data: GenreType, index: number) => {
               return (
-                <ToggleGroupItem
-                  value={data.id.toString()}
-                  key={index}
-                  className={`rounded-md ${
-                    genreSelected.includes(data.id.toString())
-                      ? "bg-black text-white"
-                      : ""
-                  }`}
-                >
-                  <p className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px] flex">
-                    {data?.name}
-                    <ChevronRight />
-                  </p>
+                <ToggleGroupItem value={data.id.toString()} key={index}>
+                  <Badge
+                    className=" border border-solid border-[#27272A] rounded-full py-[2px] px-[10px]"
+                    variant={
+                      genreSelected.includes(data.id.toString())
+                        ? "default"
+                        : "outline"
+                    }
+                  >
+                    <p className="flex items-center">
+                      {data?.name}
+                      <ChevronRight className="w-[16px] h-[16px]" />
+                    </p>
+                  </Badge>
                 </ToggleGroupItem>
               );
             })}
